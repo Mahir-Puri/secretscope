@@ -1,0 +1,24 @@
+# Rust build output
+/target
+**/target
+
+# Go build output
+/k8s/admission-webhook/webhook
+/bin
+
+# TLS material generated locally for the webhook (never commit private keys)
+/certs/
+*.pem
+*.key
+
+# A real local environment file at the repo root (the fixture dev.env is kept)
+/.env
+
+# kind and local cluster scratch
+kind-config.yaml
+
+# Editor and OS noise
+.idea/
+.vscode/
+*.swp
+.DS_Store
