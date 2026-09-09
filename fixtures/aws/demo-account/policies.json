@@ -1,0 +1,16 @@
+[
+  {
+    "name": "DeveloperPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["s3:GetObject"], "resources": ["arn:aws:s3:::dev-data/*"] },
+      { "effect": "allow", "actions": ["sts:AssumeRole"], "resources": ["arn:aws:iam::123456789012:role/payments-production-role"] }
+    ]
+  },
+  {
+    "name": "PaymentsProductionPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["s3:GetObject", "s3:PutObject"], "resources": ["arn:aws:s3:::payments-prod/*"] },
+      { "effect": "allow", "actions": ["secretsmanager:GetSecretValue"], "resources": ["arn:aws:secretsmanager:us-east-1:123456789012:secret:prod/database"] }
+    ]
+  }
+]

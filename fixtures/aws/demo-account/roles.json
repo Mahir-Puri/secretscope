@@ -1,0 +1,7 @@
+[
+  {
+    "name": "payments-production-role",
+    "arn": "arn:aws:iam::123456789012:role/payments-production-role",
+    "policies": ["PaymentsProductionPolicy"]
+  }
+]

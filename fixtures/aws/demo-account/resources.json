@@ -1,0 +1,5 @@
+[
+  { "arn": "arn:aws:s3:::dev-data/*", "service": "s3", "environment": "development", "sensitive": false },
+  { "arn": "arn:aws:s3:::payments-prod/*", "service": "s3", "environment": "production", "sensitive": true },
+  { "arn": "arn:aws:secretsmanager:us-east-1:123456789012:secret:prod/database", "service": "secretsmanager", "environment": "production", "sensitive": true }
+]
