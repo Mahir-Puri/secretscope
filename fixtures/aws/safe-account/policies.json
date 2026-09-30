@@ -1,0 +1,8 @@
+[
+  {
+    "name": "ReadOnlyDevPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["s3:GetObject"], "resources": ["arn:aws:s3:::dev-data/*"] }
+    ]
+  }
+]

@@ -1,0 +1,3 @@
+[
+  { "arn": "arn:aws:s3:::dev-data/*", "service": "s3", "environment": "development", "sensitive": false }
+]
