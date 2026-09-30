@@ -1,0 +1,5 @@
+[
+  { "name": "role-a", "arn": "arn:aws:iam::123456789012:role/role-a", "policies": ["RoleAPolicy"] },
+  { "name": "role-b", "arn": "arn:aws:iam::123456789012:role/role-b", "policies": ["RoleBPolicy"] },
+  { "name": "role-c", "arn": "arn:aws:iam::123456789012:role/role-c", "policies": ["RoleCPolicy"] }
+]

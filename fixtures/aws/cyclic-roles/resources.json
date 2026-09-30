@@ -1,0 +1,3 @@
+[
+  { "arn": "arn:aws:s3:::deep-bucket/*", "service": "s3", "environment": "staging", "sensitive": false }
+]

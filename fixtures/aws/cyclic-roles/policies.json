@@ -1,0 +1,27 @@
+[
+  {
+    "name": "EntryPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["sts:AssumeRole"], "resources": ["arn:aws:iam::123456789012:role/role-a"] }
+    ]
+  },
+  {
+    "name": "RoleAPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["sts:AssumeRole"], "resources": ["arn:aws:iam::123456789012:role/role-b"] }
+    ]
+  },
+  {
+    "name": "RoleBPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["sts:AssumeRole"], "resources": ["arn:aws:iam::123456789012:role/role-c"] }
+    ]
+  },
+  {
+    "name": "RoleCPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["sts:AssumeRole"], "resources": ["arn:aws:iam::123456789012:role/role-a"] },
+      { "effect": "allow", "actions": ["s3:GetObject"], "resources": ["arn:aws:s3:::deep-bucket/*"] }
+    ]
+  }
+]
