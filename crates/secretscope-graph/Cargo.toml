@@ -1,0 +1,12 @@
+[package]
+name = "secretscope-graph"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Permission graph construction and blast-radius traversal for SecretScope"
+
+[dependencies]
+serde = { workspace = true }
+secretscope-iam = { path = "../secretscope-iam" }
