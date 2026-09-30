@@ -1,0 +1,9 @@
+[
+  {
+    "name": "OpsPolicy",
+    "statements": [
+      { "effect": "allow", "actions": ["s3:*"], "resources": ["arn:aws:s3:::payments-prod/*"] },
+      { "effect": "deny", "actions": ["s3:DeleteObject"], "resources": ["arn:aws:s3:::payments-prod/*"] }
+    ]
+  }
+]

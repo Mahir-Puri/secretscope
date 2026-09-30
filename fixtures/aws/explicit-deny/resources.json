@@ -1,0 +1,3 @@
+[
+  { "arn": "arn:aws:s3:::payments-prod/*", "service": "s3", "environment": "production", "sensitive": true }
+]
