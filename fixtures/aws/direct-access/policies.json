@@ -1,0 +1,8 @@
+[
+  {
+    "name": "DirectS3Policy",
+    "statements": [
+      { "effect": "allow", "actions": ["s3:GetObject", "s3:PutObject"], "resources": ["arn:aws:s3:::app-bucket/*"] }
+    ]
+  }
+]
