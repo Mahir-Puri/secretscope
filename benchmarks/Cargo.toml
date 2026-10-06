@@ -1,0 +1,18 @@
+[package]
+name = "benchmarks"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Deterministic benchmark harness for SecretScope"
+publish = false
+
+[[bin]]
+name = "secretscope-bench"
+path = "src/main.rs"
+
+[dependencies]
+secretscope-scanner = { path = "../crates/secretscope-scanner" }
+secretscope-iam = { path = "../crates/secretscope-iam" }
+secretscope-graph = { path = "../crates/secretscope-graph" }
