@@ -1,0 +1,16 @@
+[package]
+name = "secretscope-risk"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+description = "Explainable, deterministic risk scoring for SecretScope"
+
+[dependencies]
+serde = { workspace = true }
+secretscope-graph = { path = "../secretscope-graph" }
+
+[dev-dependencies]
+secretscope-iam = { path = "../secretscope-iam" }
+secretscope-graph = { path = "../secretscope-graph" }
