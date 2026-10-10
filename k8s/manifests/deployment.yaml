@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secretscope-webhook
+  namespace: secretscope
+  labels:
+    app: secretscope-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secretscope-webhook
+  template:
+    metadata:
+      labels:
+        app: secretscope-webhook
+    spec:
+      containers:
+        - name: webhook
+          image: secretscope/webhook:latest
+          args:
+            - "--addr=:8443"
+            - "--tls-cert=/etc/webhook/certs/tls.crt"
+            - "--tls-key=/etc/webhook/certs/tls.key"
+          ports:
+            - containerPort: 8443
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8443
+              scheme: HTTPS
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          volumeMounts:
+            - name: certs
+              mountPath: /etc/webhook/certs
+              readOnly: true
+          securityContext:
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            runAsNonRoot: true
+      volumes:
+        - name: certs
+          secret:
+            secretName: secretscope-webhook-certs
