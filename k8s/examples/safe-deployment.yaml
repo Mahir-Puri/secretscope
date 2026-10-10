@@ -1,0 +1,36 @@
+# A Deployment that sources its secret from a Secret object. The SecretScope
+# webhook allows this because the value never appears in plaintext.
+apiVersion: v1
+kind: Secret
+metadata:
+  name: db-credentials
+  namespace: default
+type: Opaque
+stringData:
+  # TEST FIXTURE ONLY. Not a real credential.
+  password: "not-a-real-password-value"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: safe-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: safe-app
+  template:
+    metadata:
+      labels:
+        app: safe-app
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          env:
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-credentials
+                  key: password
