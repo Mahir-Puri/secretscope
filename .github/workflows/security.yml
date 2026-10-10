@@ -1,0 +1,41 @@
+name: security
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "0 6 * * 1"
+
+jobs:
+  self-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: dtolnay/rust-toolchain@1.75.0
+      - name: Build SecretScope
+        run: cargo build --release -p secretscope-cli
+      - name: Scan this repository for exposed credentials
+        # The fixtures directory contains intentional synthetic secrets, so it is
+        # excluded here. Everything else must stay clean.
+        run: |
+          ./target/release/secretscope scan . \
+            --history \
+            --exclude fixtures \
+            --exclude target \
+            --exclude tests \
+            --exclude examples \
+            --exclude _test.go \
+            --fail-on medium
+
+  dependency-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --locked
+      - name: Audit dependencies
+        run: cargo audit
