@@ -1,0 +1,25 @@
+# A Deployment with a plaintext AWS access key in an environment variable. The
+# SecretScope webhook rejects this. The key is a well-known documentation
+# placeholder and cannot authenticate.
+# TEST FIXTURE ONLY.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: unsafe-aws
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: unsafe-aws
+  template:
+    metadata:
+      labels:
+        app: unsafe-aws
+    spec:
+      containers:
+        - name: app
+          image: nginx:1.27
+          env:
+            - name: AWS_ACCESS_KEY_ID
+              value: "AKIAIOSFODNN7EXAMPLE"
