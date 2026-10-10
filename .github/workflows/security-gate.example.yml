@@ -1,0 +1,20 @@
+# Example workflow for a DIFFERENT repository that wants to use SecretScope as a
+# pull-request gate. Copy this into that repository's .github/workflows and
+# adjust the install step to fetch a released binary.
+name: secretscope-gate.example
+
+on:
+  pull_request:
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      # Replace this with a download of a published SecretScope release binary.
+      - name: Install SecretScope (placeholder)
+        run: echo "fetch the secretscope binary here"
+      - name: Fail the build on exposed credentials
+        run: secretscope scan . --history --fail-on high
